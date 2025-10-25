@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "AutoFill Google Form (for testing)",
+  "version": "1.0",
+  "description": "Autofill Google Forms for testing. Uses an LLM API to generate appropriate answers.",
+  "permissions": ["scripting", "activeTab", "storage", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AutoFill Form"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/forms/*"],
+      "js": ["content_script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "https://api.openai.com/*"
+  ]
+} 
